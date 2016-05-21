@@ -1,6 +1,6 @@
 //
 //	UIXToolbarView.m
-//	Reader v2.8.6
+//	PracticalLockPicking v2.8.6
 //
 //	Created by Julius Oklamcak on 2011-09-01.
 //	Copyright © 2011-2015 Julius Oklamcak. All rights reserved.
@@ -23,7 +23,7 @@
 //	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "ReaderConstants.h"
+#import "PracticalLockPickingConstants.h"
 #import "UIXToolbarView.h"
 
 #import <QuartzCore/QuartzCore.h>

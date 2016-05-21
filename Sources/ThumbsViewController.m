@@ -1,6 +1,6 @@
 //
 //	ThumbsViewController.m
-//	Reader v2.8.6
+//	PracticalLockPicking v2.8.6
 //
 //	Created by Julius Oklamcak on 2011-09-01.
 //	Copyright © 2011-2015 Julius Oklamcak. All rights reserved.
@@ -23,25 +23,25 @@
 //	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "ReaderConstants.h"
+#import "PracticalLockPickingConstants.h"
 #import "ThumbsViewController.h"
-#import "ReaderThumbRequest.h"
-#import "ReaderThumbCache.h"
-#import "ReaderDocument.h"
+#import "PracticalLockPickingThumbRequest.h"
+#import "PracticalLockPickingThumbCache.h"
+#import "PracticalLockPickingDocument.h"
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface ThumbsViewController () <ThumbsMainToolbarDelegate, ReaderThumbsViewDelegate>
+@interface ThumbsViewController () <ThumbsMainToolbarDelegate, PracticalLockPickingThumbsViewDelegate>
 
 @end
 
 @implementation ThumbsViewController
 {
-	ReaderDocument *document;
+	PracticalLockPickingDocument *document;
 
 	ThumbsMainToolbar *mainToolbar;
 
-	ReaderThumbsView *theThumbsView;
+	PracticalLockPickingThumbsView *theThumbsView;
 
 	NSMutableArray *bookmarked;
 
@@ -67,17 +67,17 @@
 
 #pragma mark - UIViewController methods
 
-- (instancetype)initWithReaderDocument:(ReaderDocument *)object
+- (instancetype)initWithPracticalLockPickingDocument:(PracticalLockPickingDocument *)object
 {
 	if ((self = [super initWithNibName:nil bundle:nil])) // Initialize superclass
 	{
-		if ((object != nil) && ([object isKindOfClass:[ReaderDocument class]])) // Valid object
+		if ((object != nil) && ([object isKindOfClass:[PracticalLockPickingDocument class]])) // Valid object
 		{
 			updateBookmarked = YES; bookmarked = [NSMutableArray new]; // Bookmarked pages
 
-			document = object; // Retain the ReaderDocument object for our use
+			document = object; // Retain the PracticalLockPickingDocument object for our use
 		}
-		else // Invalid ReaderDocument object
+		else // Invalid PracticalLockPickingDocument object
 		{
 			self = nil;
 		}
@@ -133,9 +133,9 @@
 		scrollViewInsets.top = TOOLBAR_HEIGHT;
 	}
 
-	theThumbsView = [[ReaderThumbsView alloc] initWithFrame:scrollViewRect]; // ReaderThumbsView
+	theThumbsView = [[PracticalLockPickingThumbsView alloc] initWithFrame:scrollViewRect]; // PracticalLockPickingThumbsView
 	theThumbsView.contentInset = scrollViewInsets; theThumbsView.scrollIndicatorInsets = scrollViewInsets;
-	theThumbsView.delegate = self; // ReaderThumbsViewDelegate
+	theThumbsView.delegate = self; // PracticalLockPickingThumbsViewDelegate
 	[self.view insertSubview:theThumbsView belowSubview:mainToolbar];
 
 	if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
@@ -277,17 +277,17 @@
 
 #pragma mark - UIThumbsViewDelegate methods
 
-- (NSUInteger)numberOfThumbsInThumbsView:(ReaderThumbsView *)thumbsView
+- (NSUInteger)numberOfThumbsInThumbsView:(PracticalLockPickingThumbsView *)thumbsView
 {
 	return (showBookmarked ? bookmarked.count : [document.pageCount integerValue]);
 }
 
-- (id)thumbsView:(ReaderThumbsView *)thumbsView thumbCellWithFrame:(CGRect)frame
+- (id)thumbsView:(PracticalLockPickingThumbsView *)thumbsView thumbCellWithFrame:(CGRect)frame
 {
 	return [[ThumbsPageThumb alloc] initWithFrame:frame];
 }
 
-- (void)thumbsView:(ReaderThumbsView *)thumbsView updateThumbCell:(ThumbsPageThumb *)thumbCell forIndex:(NSInteger)index
+- (void)thumbsView:(PracticalLockPickingThumbsView *)thumbsView updateThumbCell:(ThumbsPageThumb *)thumbCell forIndex:(NSInteger)index
 {
 	CGSize size = [thumbCell maximumContentSize]; // Get the cell's maximum content size
 
@@ -299,21 +299,21 @@
 
 	NSURL *fileURL = document.fileURL; NSString *guid = document.guid; NSString *phrase = document.password; // Document info
 
-	ReaderThumbRequest *thumbRequest = [ReaderThumbRequest newForView:thumbCell fileURL:fileURL password:phrase guid:guid page:page size:size];
+	PracticalLockPickingThumbRequest *thumbRequest = [PracticalLockPickingThumbRequest newForView:thumbCell fileURL:fileURL password:phrase guid:guid page:page size:size];
 
-	UIImage *image = [[ReaderThumbCache sharedInstance] thumbRequest:thumbRequest priority:YES]; // Request the thumbnail
+	UIImage *image = [[PracticalLockPickingThumbCache sharedInstance] thumbRequest:thumbRequest priority:YES]; // Request the thumbnail
 
 	if ([image isKindOfClass:[UIImage class]]) [thumbCell showImage:image]; // Show image from cache
 }
 
-- (void)thumbsView:(ReaderThumbsView *)thumbsView refreshThumbCell:(ThumbsPageThumb *)thumbCell forIndex:(NSInteger)index
+- (void)thumbsView:(PracticalLockPickingThumbsView *)thumbsView refreshThumbCell:(ThumbsPageThumb *)thumbCell forIndex:(NSInteger)index
 {
 	NSInteger page = (showBookmarked ? [[bookmarked objectAtIndex:index] integerValue] : (index + 1));
 
 	[thumbCell showBookmark:[document.bookmarks containsIndex:page]]; // Show bookmarked status
 }
 
-- (void)thumbsView:(ReaderThumbsView *)thumbsView didSelectThumbWithIndex:(NSInteger)index
+- (void)thumbsView:(PracticalLockPickingThumbsView *)thumbsView didSelectThumbWithIndex:(NSInteger)index
 {
 	NSInteger page = (showBookmarked ? [[bookmarked objectAtIndex:index] integerValue] : (index + 1));
 
@@ -322,7 +322,7 @@
 	[delegate dismissThumbsViewController:self]; // Dismiss thumbs display
 }
 
-- (void)thumbsView:(ReaderThumbsView *)thumbsView didPressThumbWithIndex:(NSInteger)index
+- (void)thumbsView:(PracticalLockPickingThumbsView *)thumbsView didPressThumbWithIndex:(NSInteger)index
 {
 	NSInteger page = (showBookmarked ? [[bookmarked objectAtIndex:index] integerValue] : (index + 1));
 
@@ -431,7 +431,7 @@
 
 		[imageView addSubview:tintView];
 
-		UIImage *image = [UIImage imageNamed:@"Reader-Mark-Y"];
+		UIImage *image = [UIImage imageNamed:@"PracticalLockPicking-Mark-Y"];
 
 		bookMark = [[UIImageView alloc] initWithImage:image];
 

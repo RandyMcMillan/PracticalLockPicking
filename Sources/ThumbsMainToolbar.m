@@ -1,6 +1,6 @@
 //
 //	ThumbsMainToolbar.m
-//	Reader v2.8.6
+//	PracticalLockPicking v2.8.6
 //
 //	Created by Julius Oklamcak on 2011-09-01.
 //	Copyright © 2011-2015 Julius Oklamcak. All rights reserved.
@@ -23,7 +23,7 @@
 //	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "ReaderConstants.h"
+#import "PracticalLockPickingConstants.h"
 #import "ThumbsMainToolbar.h"
 
 @implementation ThumbsMainToolbar
@@ -65,8 +65,8 @@
 #if (READER_FLAT_UI == TRUE) // Option
 		UIImage *buttonH = nil; UIImage *buttonN = nil;
 #else
-		UIImage *buttonH = [[UIImage imageNamed:@"Reader-Button-H"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
-		UIImage *buttonN = [[UIImage imageNamed:@"Reader-Button-N"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+		UIImage *buttonH = [[UIImage imageNamed:@"PracticalLockPicking-Button-H"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
+		UIImage *buttonN = [[UIImage imageNamed:@"PracticalLockPicking-Button-N"] stretchableImageWithLeftCapWidth:5 topCapHeight:0];
 #endif // end of READER_FLAT_UI Option
 
 		BOOL largeDevice = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad);
@@ -102,8 +102,8 @@
 
 		CGFloat showControlX = (viewWidth - (SHOW_CONTROL_WIDTH + buttonSpacing));
 
-		UIImage *thumbsImage = [UIImage imageNamed:@"Reader-Thumbs"];
-		UIImage *bookmarkImage = [UIImage imageNamed:@"Reader-Mark-Y"];
+		UIImage *thumbsImage = [UIImage imageNamed:@"PracticalLockPicking-Thumbs"];
+		UIImage *bookmarkImage = [UIImage imageNamed:@"PracticalLockPicking-Mark-Y"];
 		NSArray *buttonItems = [NSArray arrayWithObjects:thumbsImage, bookmarkImage, nil];
 
 		BOOL useTint = [self respondsToSelector:@selector(tintColor)]; // iOS 7 and up

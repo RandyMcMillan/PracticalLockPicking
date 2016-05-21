@@ -1,6 +1,6 @@
 //
 //	ThumbsViewController.h
-//	Reader v2.8.6
+//	PracticalLockPicking v2.8.6
 //
 //	Created by Julius Oklamcak on 2011-09-01.
 //	Copyright © 2011-2015 Julius Oklamcak. All rights reserved.
@@ -26,9 +26,9 @@
 #import <UIKit/UIKit.h>
 
 #import "ThumbsMainToolbar.h"
-#import "ReaderThumbsView.h"
+#import "PracticalLockPickingThumbsView.h"
 
-@class ReaderDocument;
+@class PracticalLockPickingDocument;
 @class ThumbsViewController;
 
 @protocol ThumbsViewControllerDelegate <NSObject>
@@ -45,7 +45,7 @@
 
 @property (nonatomic, weak, readwrite) id <ThumbsViewControllerDelegate> delegate;
 
-- (instancetype)initWithReaderDocument:(ReaderDocument *)object;
+- (instancetype)initWithPracticalLockPickingDocument:(PracticalLockPickingDocument *)object;
 
 @end
 
@@ -55,7 +55,7 @@
 //	ThumbsPageThumb class interface
 //
 
-@interface ThumbsPageThumb : ReaderThumbView
+@interface ThumbsPageThumb : PracticalLockPickingThumbView
 
 - (CGSize)maximumContentSize;
 

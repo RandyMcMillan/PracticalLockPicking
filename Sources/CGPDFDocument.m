@@ -1,6 +1,6 @@
 //
 //	CGPDFDocument.m
-//	Reader v2.8.6
+//	PracticalLockPicking v2.8.6
 //
 //	Created by Julius Oklamcak on 2011-07-01.
 //	Copyright © 2011-2015 Julius Oklamcak. All rights reserved.
